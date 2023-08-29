@@ -1,0 +1,15 @@
+body{
+    margin: 0;
+    background-color: #FF8888;
+    font-family: 'Open Sans', sans-serif;
+}
+header{
+    display: flex;
+    justify-content: center;
+}
+.headline{
+    border: 5px solid black;
+    border-radius: 69px;
+    padding-inline: 20px;
+    border-top: 0;
+}

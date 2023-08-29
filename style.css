@@ -21,16 +21,31 @@ header{
     margin: 40px;
     
 }
-#pokemon-container{
+.pokemon-container{
     display: flex;
     flex-direction: column;
     /* justify-content: center; */
     align-items: center;
     height: 300px;
     width: 250px;
-    background-color: green;
+   /* background-color: green;*/
     border-radius: 16px;
 }
 #traits{
+    background-color: grey;
+    padding: 8px;
+    border-radius: 6px;
+    text-align: center;
+
+}
+
+#poke-img{
+    width: 100px;
+    height: 100px;
     
+}
+.imgAndTrait{
+display: flex;
+flex-direction: column;
+gap: 16px;
 }

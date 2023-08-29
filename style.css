@@ -13,3 +13,24 @@ header{
     padding-inline: 20px;
     border-top: 0;
 }
+#show-pokemon{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 56px;
+    margin: 40px;
+    
+}
+#pokemon-container{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    height: 300px;
+    width: 250px;
+    background-color: green;
+    border-radius: 16px;
+}
+#traits{
+    
+}

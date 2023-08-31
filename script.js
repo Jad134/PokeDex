@@ -30,8 +30,16 @@ async function loadPokemon() {
                trait2.push(null);
              }
      }
-
+     FirstLetterUpperCase()
 }
+
+function FirstLetterUpperCase(){ // Anfangsbuchstaben der Pokemon gross schreiben.
+     for(var i = 0 ; i < loadedPokemonName.length ; i++){
+          loadedPokemonName[i] = loadedPokemonName[i].charAt(0).toUpperCase() + loadedPokemonName[i].substr(1);
+      }
+       
+}
+
 
 function renderPokemon() {
      for (let i = 0; i < loadedPokemonName.length; i++) {
@@ -52,10 +60,13 @@ function renderPokemon() {
           setBackgroundColor(i, currentTrait1);
           setFirstTraitColor(i, currentTrait1);
           setSecondTraitColor(i, currentTrait2);
-
+          
 
      }
 }
+
+
+ 
 
 function setBackgroundColor(i, currentTrait1) {
      const backgroundColors = {

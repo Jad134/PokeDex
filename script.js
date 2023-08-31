@@ -7,6 +7,7 @@ let trait2 = [];
 async function init() {
      await loadPokemon();
      renderPokemon();
+      
 }
 
 async function loadPokemon() {
@@ -31,22 +32,26 @@ async function loadPokemon() {
      }
 
 }
+
 function renderPokemon() {
      for (let i = 0; i < loadedPokemonName.length; i++) {
           let currentPokemonName = loadedPokemonName[i];
           let currentPokemonImg = loadedPokemonImg[i];
           let currentTrait1 = trait1[i];
-          let currentTrait2 = trait2[i]
+          let currentTrait2 = trait2[i];
+          
           document.getElementById('show-pokemon').innerHTML += /*html*/`
                <div class="pokemon-container" id="pokemon-container${i}"> <h3>${currentPokemonName}</h3>
                  <div class="imgAndTrait">
                   <img src="${currentPokemonImg}" id="poke-img">
-                  <span class="traits" id="traits">${currentTrait1}</span>
-                  ${currentTrait2 !== null ? `<span class="traits" id="secondTrait">${currentTrait2}</span>` : ''} 
+                  <span class="traits" id="traits${i}">${currentTrait1}</span>
+                  ${currentTrait2 !== null ? `<span class="traits" id="secondTrait${i}">${currentTrait2}</span>` : ''} 
                  </div>
                </div>    `;
 
           setBackgroundColor(i, currentTrait1);
+          setFirstTraitColor(i, currentTrait1);
+          setSecondTraitColor(i, currentTrait2);
 
 
      }
@@ -55,7 +60,7 @@ function renderPokemon() {
 function setBackgroundColor(i, currentTrait1) {
      const backgroundColors = {
           'fire': 'red', 'normal': 'grey', 'water': 'blue', 'grass': 'green',
-          'bug': 'darkgreen', 'poison': 'purple', 'electric': 'yellow', 'ground': 'brown',
+          'bug': 'darkgreen', 'poison': 'purple', 'electric': 'rgb(230, 247, 124)', 'ground': 'brown',
           'fairy': 'rgb(234, 75, 157)', 'fighting': 'rgb(90, 5, 5)', 'rock': 'rgb(50, 43, 43)',
           'psychic': 'rgb(122, 113, 113)', 'ghost': 'rgb(174, 140, 255)', 'ice': 'rgb(186, 242, 239)',
           'dragon': 'rgb(255, 214, 139)'
@@ -67,6 +72,27 @@ function setBackgroundColor(i, currentTrait1) {
      }
 }
 
-function setTraitColor(){
-     
+function setFirstTraitColor(i, currentTrait1){
+     const backgroundColors = {
+          'fire': 'rgb(242, 56, 56)', 'normal': 'rgb(94, 92, 92)', 'water': 'rgb(53, 75, 242)', 'grass': 'rgb(48, 240, 67)',
+          'bug': 'rgb(37, 125, 25)', 'poison': 'rgb(142, 49, 235)', 'electric': 'yellow', 'ground': 'rgb(145, 76, 10)',
+          'fairy': 'rgb(232, 60, 203)', 'fighting': 'rgb(227, 32, 64)', 'rock': 'rgb(52, 54, 40)',
+          'psychic': 'rgb(137, 153, 17)', 'ghost': 'rgb(189, 166, 157)', 'ice': 'rgb(71, 252, 255)',
+          'dragon': 'rgb(237, 142, 33)'
+      };
+      let backgroundColor = backgroundColors[currentTrait1];
+      if (backgroundColor){
+          document.getElementById(`traits${i}`).style.backgroundColor = backgroundColor;
+      }
 }
+function setSecondTraitColor(i, currentTrait2){
+     const backgroundColors = {
+          'flying': 'rgb(50, 228, 237)', 'poison': 'rgb(142, 49, 235)', 'ground': 'rgb(145, 76, 10)', 'fairy': 'rgb(232, 60, 203)', 'ice': 'rgb(71, 252, 255)'
+     }
+     let backgroundColor = backgroundColors[currentTrait2];
+     if(backgroundColor){
+          document.getElementById(`secondTrait${i}`).style.backgroundColor = backgroundColor;
+     }
+}
+
+

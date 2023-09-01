@@ -159,6 +159,7 @@ h3 {
 }
 
 
+
 /*----------------------- Back card --------------------------*/
 .back-card-header {
     display: flex;
@@ -179,6 +180,7 @@ h3 {
     align-items: start;
     gap: 8px;
     border-bottom: 2px solid black;
+    height: 42%;
 }
 
 .back-card-mainInfo h2{
@@ -209,5 +211,18 @@ h3 {
     font-weight: bold;
     margin-right: 16px;
     font-size: 24px;
+    
+}
+.back-card-second-info{
+    display: flex;
+    margin-left: 8px;
+    font-size: 26px;
+    margin-top: 16px;
+    flex-direction: column;
+}
+.height-style{
+    color: black;
+    font-weight: bold;
+   
     
 }

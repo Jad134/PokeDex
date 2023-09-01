@@ -4,6 +4,8 @@ let loadedPokemonImg = [];
 let trait1 = [];
 let trait2 = [];
 let pokeId = [];
+let height = [];
+let weight = [];
 
 let startAmount = 1;
 
@@ -25,6 +27,9 @@ async function loadPokemon() {
           loadedPokemonImg.push(currentPokemon['sprites']['other']['dream_world']['front_default'])
           trait1.push(currentPokemon['types']['0']['type']['name'])
           pokeId.push(currentPokemon['id'])
+          height.push(currentPokemon['height'])
+          weight.push(currentPokemon['weight'])
+
 
           const firstType = currentPokemon['types'][0]['type']['name'];
           // console.log("Erster Typ:", firstType); // Eigenschaften der Pokemons
@@ -64,12 +69,15 @@ async function renderPokemon() {
           let currentTrait1 = trait1[i];
           let currentTrait2 = trait2[i];
           let currentId = pokeId[i];
+          let currentHeight = formatNumbers(height[i].toFixed());
+          let currentWeight =  formatNumbers(weight[i].toFixed());
+          
 
 
           document.getElementById('show-pokemon').innerHTML += /*html*/`
 <div class="flip-card">
     <div class="flip-card-inner">
-        <div class="pokemon-container flip-card-front " id="pokemon-container${i}">
+        <div  class="pokemon-container flip-card-front " id="pokemon-container${i}">
             <h3>${currentPokemonName}</h3>
             <div class="imgAndTrait">
                 <img src="${currentPokemonImg}" id="poke-img">
@@ -79,19 +87,24 @@ async function renderPokemon() {
             </div>
 
         </div>
-        <div id="flip-card-back${i}" class="flip-card-back">
-           <div class="back-card-header"> 
+          <div onclick="openCard(${i})" id="flip-card-back${i}" class="flip-card-back">
+              <div class="back-card-header"> 
                 <h1>${currentPokemonName}</h1> 
-           </div>
-            <div class="back-card-mainInfo">
-               <div id="id-container">
-                  <h2>Type</h2>
-                  <span class="id-number"> # ${currentId}</span>
-               </div>
-              <span id="backcard-trait${i}" class="backcard-trait">${currentTrait1}</span>
-              ${currentTrait2 !== null ? `<span id="backcard-second-trait${i}" class="backcard-trait">${currentTrait2}</span>` : ''}
-            </div>
-        </div>
+                </div>
+                <div class="back-card-mainInfo">
+                 <div id="id-container">
+                    <h2>Type</h2>
+                    <span class="id-number"> # ${currentId}</span>
+                 </div>
+                 <span id="backcard-trait${i}" class="backcard-trait">${currentTrait1}</span>
+                 ${currentTrait2 !== null ? `<span id="backcard-second-trait${i}" class="backcard-trait">${currentTrait2}</span>` : ''}
+                </div>
+                  <div class="back-card-second-info">
+                    <span>Height: <span class="height-style"> ${currentHeight} m</span> </span>
+                    <span>Weight: <span class="height-style"> ${currentWeight} kg</span> </span>
+                   
+                  </div>
+          </div>
 
     </div>
 </div>
@@ -105,10 +118,6 @@ async function renderPokemon() {
 
 
      }
-     console.log(loadedPokemonName);
-     console.log(loadedPokemonImg);
-     console.log(trait1);
-     console.log(trait2);
 }
 
 
@@ -154,6 +163,18 @@ function setSecondTraitColor(i, currentTrait2) {
           document.getElementById(`backcard-second-trait${i}`).style.backgroundColor = backgroundColor;
      }
 }
+
+function formatNumbers(height) {
+     if (height < 10) {
+         return `0.${height}`;
+     } else {
+         return `${height / 10}`;
+     }
+ }
+
+ function openCard(i){
+     console.log(`openCard${i +1} `)
+ }
 
 
 

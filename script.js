@@ -3,6 +3,7 @@ let loadedPokemonName = [];
 let loadedPokemonImg = [];
 let trait1 = [];
 let trait2 = [];
+let pokeId = [];
 
 let startAmount = 1;
 
@@ -23,6 +24,7 @@ async function loadPokemon() {
           loadedPokemonName.push(currentPokemon['name'])
           loadedPokemonImg.push(currentPokemon['sprites']['other']['dream_world']['front_default'])
           trait1.push(currentPokemon['types']['0']['type']['name'])
+          pokeId.push(currentPokemon['id'])
 
           const firstType = currentPokemon['types'][0]['type']['name'];
           // console.log("Erster Typ:", firstType); // Eigenschaften der Pokemons
@@ -61,6 +63,7 @@ async function renderPokemon() {
           let currentPokemonImg = loadedPokemonImg[i];
           let currentTrait1 = trait1[i];
           let currentTrait2 = trait2[i];
+          let currentId = pokeId[i];
 
 
           document.getElementById('show-pokemon').innerHTML += /*html*/`
@@ -76,10 +79,18 @@ async function renderPokemon() {
             </div>
 
         </div>
-        <div class="flip-card-back">
-            <h1>John Doe</h1>
-            <p>Architect & Engineer</p>
-            <p>We love that guy</p>
+        <div id="flip-card-back${i}" class="flip-card-back">
+           <div class="back-card-header"> 
+                <h1>${currentPokemonName}</h1> 
+           </div>
+            <div class="back-card-mainInfo">
+               <div id="id-container">
+                  <h2>Type</h2>
+                  <span class="id-number"> # ${currentId}</span>
+               </div>
+              <span id="backcard-trait${i}" class="backcard-trait">${currentTrait1}</span>
+              ${currentTrait2 !== null ? `<span id="backcard-second-trait${i}" class="backcard-trait">${currentTrait2}</span>` : ''}
+            </div>
         </div>
 
     </div>
@@ -115,6 +126,7 @@ function setBackgroundColor(i, currentTrait1) {
      const backgroundColor = backgroundColors[currentTrait1];
      if (backgroundColor) {
           document.getElementById(`pokemon-container${i}`).style.backgroundColor = backgroundColor;
+          document.getElementById(`flip-card-back${i}`).style.backgroundColor = backgroundColor;
      }
 }
 
@@ -129,6 +141,7 @@ function setFirstTraitColor(i, currentTrait1) {
      let backgroundColor = backgroundColors[currentTrait1];
      if (backgroundColor) {
           document.getElementById(`traits${i}`).style.backgroundColor = backgroundColor;
+          document.getElementById(`backcard-trait${i}`).style.backgroundColor = backgroundColor;
      }
 }
 function setSecondTraitColor(i, currentTrait2) {
@@ -138,6 +151,7 @@ function setSecondTraitColor(i, currentTrait2) {
      let backgroundColor = backgroundColors[currentTrait2];
      if (backgroundColor) {
           document.getElementById(`secondTrait${i}`).style.backgroundColor = backgroundColor;
+          document.getElementById(`backcard-second-trait${i}`).style.backgroundColor = backgroundColor;
      }
 }
 

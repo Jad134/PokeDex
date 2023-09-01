@@ -16,7 +16,7 @@ async function init() {
 
 async function loadPokemon() {
 
-     for (let i = startAmount ; i < startAmount + 20; i++) {
+     for (let i = startAmount; i < startAmount + 20; i++) {
           let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
           let response = await fetch(url);
           let currentPokemon = await response.json();
@@ -43,7 +43,7 @@ async function loadPokemon() {
 async function loadMore() { // WICHTIG! Reihenfolge beachten. Erst startAmount und dann loadPokemon()
      startAmount += 20;
      await loadPokemon()
-     
+
 }
 
 
@@ -56,7 +56,7 @@ function FirstLetterUpperCase() { // Anfangsbuchstaben der Pokemon gross schreib
 
 
 async function renderPokemon() {
-     for (let i = startAmount -1; i < startAmount + 18; i++) {
+     for (let i = startAmount - 1; i < startAmount + 18; i++) {
           let currentPokemonName = loadedPokemonName[i];
           let currentPokemonImg = loadedPokemonImg[i];
           let currentTrait1 = trait1[i];
@@ -64,13 +64,28 @@ async function renderPokemon() {
 
 
           document.getElementById('show-pokemon').innerHTML += /*html*/`
-               <div class="pokemon-container" id="pokemon-container${i}"> <h3>${currentPokemonName}</h3>
-                 <div class="imgAndTrait">
-                  <img src="${currentPokemonImg}" id="poke-img">
-                  <span class="traits" id="traits${i}">${currentTrait1}</span>
-                  ${currentTrait2 !== null ? `<span class="traits" id="secondTrait${i}">${currentTrait2}</span>` : ''} 
-                 </div>
-               </div>    `;
+<div class="flip-card">
+    <div class="flip-card-inner">
+        <div class="pokemon-container flip-card-front " id="pokemon-container${i}">
+            <h3>${currentPokemonName}</h3>
+            <div class="imgAndTrait">
+                <img src="${currentPokemonImg}" id="poke-img">
+                <span class="traits" id="traits${i}">${currentTrait1}</span>
+                ${currentTrait2 !== null ? `<span class="traits" id="secondTrait${i}">${currentTrait2}</span>` : ''}
+
+            </div>
+
+        </div>
+        <div class="flip-card-back">
+            <h1>John Doe</h1>
+            <p>Architect & Engineer</p>
+            <p>We love that guy</p>
+        </div>
+
+    </div>
+</div>
+          
+               `;
 
           setBackgroundColor(i, currentTrait1);
           setFirstTraitColor(i, currentTrait1);

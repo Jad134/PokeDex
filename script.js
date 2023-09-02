@@ -6,6 +6,7 @@ let trait2 = [];
 let pokeId = [];
 let height = [];
 let weight = [];
+const pokemonStats = [];
 
 let startAmount = 1;
 
@@ -23,6 +24,14 @@ async function loadPokemon() {
           let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
           let response = await fetch(url);
           let currentPokemon = await response.json();
+
+          const stats = currentPokemon.stats.map(stat => ({
+               name: stat.stat.name,
+               value: stat.base_stat
+          }));
+
+          pokemonStats.push(stats);
+
           loadedPokemonName.push(currentPokemon['name'])
           loadedPokemonImg.push(currentPokemon['sprites']['other']['dream_world']['front_default'])
           trait1.push(currentPokemon['types']['0']['type']['name'])
@@ -30,6 +39,7 @@ async function loadPokemon() {
           height.push(currentPokemon['height'])
           weight.push(currentPokemon['weight'])
 
+          
 
           const firstType = currentPokemon['types'][0]['type']['name'];
           // console.log("Erster Typ:", firstType); // Eigenschaften der Pokemons
@@ -41,6 +51,7 @@ async function loadPokemon() {
           } else {
                trait2.push(null);
           }
+          
      }
 
      FirstLetterUpperCase()
@@ -54,6 +65,7 @@ async function loadMore() { // WICHTIG! Reihenfolge beachten. Erst startAmount u
 }
 
 
+
 function FirstLetterUpperCase() { // Anfangsbuchstaben der Pokemon gross schreiben.
      for (var i = 0; i < loadedPokemonName.length; i++) {
           loadedPokemonName[i] = loadedPokemonName[i].charAt(0).toUpperCase() + loadedPokemonName[i].substr(1);
@@ -62,8 +74,10 @@ function FirstLetterUpperCase() { // Anfangsbuchstaben der Pokemon gross schreib
 }
 
 
+
+
 async function renderPokemon() {
-     for (let i = startAmount - 1; i < startAmount + 18; i++) {
+     for (let i = startAmount - 1; i < startAmount + 19; i++) {
           let currentPokemonName = loadedPokemonName[i];
           let currentPokemonImg = loadedPokemonImg[i];
           let currentTrait1 = trait1[i];
@@ -73,6 +87,7 @@ async function renderPokemon() {
           let currentWeight = formatNumbers(weight[i].toFixed());
 
 
+         
 
           document.getElementById('show-pokemon').innerHTML += /*html*/`
 <div class="flip-card">
@@ -87,7 +102,7 @@ async function renderPokemon() {
             </div>
 
         </div>
-          <div onclick="openCard(${i})" id="flip-card-back${i}" class="flip-card-back">
+          <div onclick="openCard(${i}) " id="flip-card-back${i}" class="flip-card-back">
               <div class="back-card-header"> 
                 <h1>${currentPokemonName}</h1> 
                 </div>
@@ -114,10 +129,8 @@ async function renderPokemon() {
           setBackgroundColor(i, currentTrait1);
           setFirstTraitColor(i, currentTrait1);
           setSecondTraitColor(i, currentTrait2);
-
-
-
      }
+
 }
 
 
@@ -189,11 +202,20 @@ function openCard(i) {
          <h1>${currentPokemonName}</h1>
      </div>
      <div class="stats-and-img">
-         <div class="d-none" >${currentTrait1}</div>
-         <img class="open-cardImg" src="${currentPokemonImg}" alt="${currentPokemonName}">
-         </div>
+      <div class="d-none" >${currentTrait1}</div>
+       <img class="open-cardImg" src="${currentPokemonImg}" alt="${currentPokemonName}">
+       <div class="stats">
+          <canvas id="myChart"></canvas>
+       </div>
+ 
+     </div>
+         
          <!-- Weitere Informationen zum Pokemon hier einfügen -->
      `;
+
+     setTimeout(() => {
+          renderChart(i);
+     }, 0);
 
      setModalBackgroundColor(currentTrait1);
 
@@ -234,6 +256,8 @@ function setModalBackgroundColor(trait) {
           modalContainer.style.backgroundColor = 'white';
      }
 }
+
+
 
 
 

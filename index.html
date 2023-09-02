@@ -12,6 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="openPokemon.css">
 </head>
 
 <body onload="init()">
@@ -24,6 +25,16 @@
     <div class="btn-container">
         <button onclick="loadMore()" id="load-more-btn">Load More <img id="pokeball" src="./img/pokeball.png" alt=""></button>
     </div>
+    <div id="modal-container" class="modal-container">
+        <div class="modal-content">
+            <!-- Hier wird der Inhalt des Popups angezeigt -->
+            <span class="close" onclick="closeModal()">&times;</span> <!-- Schließen-Schaltfläche -->
+            <div id="popup-pokemon"></div> <!-- Hier wird das Pokemon im Popup angezeigt -->
+        </div>
+    </div>
+
+    <!-- Hintergrundoverlay -->
+    <div id="overlay" class="overlay" onclick="closeModal()"></div>
 </body>
 
 </html>

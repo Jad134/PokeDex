@@ -70,8 +70,8 @@ async function renderPokemon() {
           let currentTrait2 = trait2[i];
           let currentId = pokeId[i];
           let currentHeight = formatNumbers(height[i].toFixed());
-          let currentWeight =  formatNumbers(weight[i].toFixed());
-          
+          let currentWeight = formatNumbers(weight[i].toFixed());
+
 
 
           document.getElementById('show-pokemon').innerHTML += /*html*/`
@@ -136,6 +136,7 @@ function setBackgroundColor(i, currentTrait1) {
      if (backgroundColor) {
           document.getElementById(`pokemon-container${i}`).style.backgroundColor = backgroundColor;
           document.getElementById(`flip-card-back${i}`).style.backgroundColor = backgroundColor;
+
      }
 }
 
@@ -151,6 +152,7 @@ function setFirstTraitColor(i, currentTrait1) {
      if (backgroundColor) {
           document.getElementById(`traits${i}`).style.backgroundColor = backgroundColor;
           document.getElementById(`backcard-trait${i}`).style.backgroundColor = backgroundColor;
+
      }
 }
 function setSecondTraitColor(i, currentTrait2) {
@@ -166,16 +168,72 @@ function setSecondTraitColor(i, currentTrait2) {
 
 function formatNumbers(height) {
      if (height < 10) {
-         return `0.${height}`;
+          return `0.${height}`;
      } else {
-         return `${height / 10}`;
+          return `${height / 10}`;
      }
- }
+}
 
- function openCard(i){
-     console.log(`openCard${i +1} `)
- }
+function openCard(i) {
+     console.log(`openCard${i + 1} `)
+     const currentPokemonName = loadedPokemonName[i];
+     const currentPokemonImg = loadedPokemonImg[i];
+     const currentTrait1 = trait1[i];
+     const currentTrait2 = trait2[i];
+     const currentId = pokeId[i];
 
+
+     const popupContent = document.getElementById('popup-pokemon');
+     popupContent.innerHTML = /*html*/`
+     <div class="open-card-header">
+         <h1>${currentPokemonName}</h1>
+     </div>
+     <div class="stats-and-img">
+         <div class="d-none" >${currentTrait1}</div>
+         <img class="open-cardImg" src="${currentPokemonImg}" alt="${currentPokemonName}">
+         </div>
+         <!-- Weitere Informationen zum Pokemon hier einfügen -->
+     `;
+
+     setModalBackgroundColor(currentTrait1);
+
+     const modalContainer = document.getElementById(`modal-container`);
+     const overlay = document.getElementById('overlay');
+
+     modalContainer.style.display = 'block';
+     overlay.style.display = 'block';
+
+}
+
+
+function closeModal() {
+     const modalContainer = document.getElementById('modal-container');
+     const overlay = document.getElementById('overlay');
+
+     modalContainer.style.display = 'none';
+     overlay.style.display = 'none';
+
+}
+
+
+function setModalBackgroundColor(trait) {
+     const modalContainer = document.getElementById('modal-container');
+     const backgroundColors = {
+          'fire': 'red', 'normal': 'grey', 'water': 'blue', 'grass': 'green',
+          'bug': 'darkgreen', 'poison': 'purple', 'electric': 'rgb(230, 247, 124)', 'ground': 'brown',
+          'fairy': 'rgb(234, 75, 157)', 'fighting': 'rgb(90, 5, 5)', 'rock': 'rgb(50, 43, 43)',
+          'psychic': 'rgb(122, 113, 113)', 'ghost': 'rgb(174, 140, 255)', 'ice': 'rgb(186, 242, 239)',
+          'dragon': 'rgb(255, 214, 139)'
+     };
+     const backgroundColor = backgroundColors[trait];
+
+     if (backgroundColor) {
+          modalContainer.style.backgroundColor = backgroundColor;
+     } else {
+          // Fallback-Hintergrundfarbe, wenn die Eigenschaft nicht gefunden wird
+          modalContainer.style.backgroundColor = 'white';
+     }
+}
 
 
 

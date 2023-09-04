@@ -32,7 +32,7 @@ async function loadPokemon() {
           }));
 
           const moves = currentPokemon.moves.map(move => ({
-               name: move.move ? move.move.name : "Unknown Move"
+               name: move.move.name 
            }));
                
           
@@ -50,7 +50,7 @@ async function loadPokemon() {
           weight.push(currentPokemon['weight'])
           
 
-          // wieso funktioniert hier currentPokemon obwohl es ausserhalb der schleife ist?
+         
           
 
           
@@ -153,7 +153,7 @@ async function renderPokemon() {
 function setBackgroundColor(i, currentTrait1) {
      const backgroundColors = {
           'fire': 'red', 'normal': 'grey', 'water': 'blue', 'grass': 'green',
-          'bug': 'darkgreen', 'poison': 'purple', 'electric': 'rgb(230, 247, 124)', 'ground': 'brown',
+          'bug': 'darkgreen', 'poison': 'purple', 'electric': 'rgb(169, 184, 79)', 'ground': 'brown',
           'fairy': 'rgb(234, 75, 157)', 'fighting': 'rgb(90, 5, 5)', 'rock': 'rgb(50, 43, 43)',
           'psychic': 'rgb(122, 113, 113)', 'ghost': 'rgb(174, 140, 255)', 'ice': 'rgb(186, 242, 239)',
           'dragon': 'rgb(255, 214, 139)'

@@ -7,6 +7,7 @@ let pokeId = [];
 let height = [];
 let weight = [];
 const pokemonStats = [];
+let pokemonMoves = [];
 
 let startAmount = 1;
 
@@ -30,7 +31,16 @@ async function loadPokemon() {
                value: stat.base_stat
           }));
 
+          const moves = currentPokemon.moves.map(move => ({
+               name: move.move ? move.move.name : "Unknown Move"
+           }));
+               
+          
+          pokemonMoves.push(moves);
+
           pokemonStats.push(stats);
+
+          
 
           loadedPokemonName.push(currentPokemon['name'])
           loadedPokemonImg.push(currentPokemon['sprites']['other']['dream_world']['front_default'])
@@ -38,6 +48,10 @@ async function loadPokemon() {
           pokeId.push(currentPokemon['id'])
           height.push(currentPokemon['height'])
           weight.push(currentPokemon['weight'])
+          
+
+          // wieso funktioniert hier currentPokemon obwohl es ausserhalb der schleife ist?
+          
 
           
 
@@ -194,6 +208,9 @@ function openCard(i) {
      const currentTrait1 = trait1[i];
      const currentTrait2 = trait2[i];
      const currentId = pokeId[i];
+     const moves = pokemonMoves[i];
+     const showMoves = moves.map(move => `<span class="move">${move.name}</span>`).join(' ');  // Damit kann man Leerzeichen zwischen den moves platzieren und jedes move bekommt ein span um ihn zu stylen.
+    
 
 
      const popupContent = document.getElementById('popup-pokemon');
@@ -208,6 +225,10 @@ function openCard(i) {
           <canvas id="myChart"></canvas>
        </div>
  
+     </div>
+     <span class="section-moves">Moves</span>
+     <div class="move-container">
+          <div id="moves">${showMoves}</div>
      </div>
          
          <!-- Weitere Informationen zum Pokemon hier einfügen -->
@@ -252,7 +273,7 @@ function setModalBackgroundColor(trait) {
      if (backgroundColor) {
           modalContainer.style.backgroundColor = backgroundColor;
      } else {
-          // Fallback-Hintergrundfarbe, wenn die Eigenschaft nicht gefunden wird
+          // Hintergrundfarbe, wenn die Eigenschaft nicht gefunden wird
           modalContainer.style.backgroundColor = 'white';
      }
 }

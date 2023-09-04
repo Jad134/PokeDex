@@ -15,7 +15,7 @@
     transform: translate(-50%, -50%);
     background-color: white;
     width: 400px; 
-    height: 400px;
+    height: 500px;
     border-radius: 5px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
@@ -43,4 +43,28 @@
 .stats{
     background-color: white;
     border-radius: 6px;
+}
+.move-container{
+    background-color: white;
+    width: 100%;
+    height: 100%;
+}
+#moves{
+    overflow-y: auto;
+    height: 190px;
+    overflow-x: hidden;
+}
+.move{
+    border: 3px solid #000; /* Fügt einen Rahmen hinzu */
+  padding: 5px; /* Fügt Innenabstand hinzu */
+  margin: 5px; /* Fügt Außenabstand hinzu */
+  display: inline-block; /* Damit werden die Moves nebeneinander angezeigt */
+  border-radius: 6px;
+  font-weight: bolder;
+}
+.section-moves{
+    display: flex;
+    justify-content: center;
+    font-size: 32px;
+    font-weight: bold;
 }

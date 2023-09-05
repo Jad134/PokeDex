@@ -6,8 +6,11 @@ body {
 
 header {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
+    align-items: center;
 }
+
+
 
 .headline {
     border: 5px solid black;
@@ -16,6 +19,18 @@ header {
     border-top: 0;
     background-color: red;
     color: white;
+}
+
+input{
+    height: 32px;
+    border: 2px solid black;
+    font-size: 24px;
+    width: 200px;
+    border-radius: 6px;
+}
+
+input:hover{
+    cursor: pointer;
 }
 
 #show-pokemon {

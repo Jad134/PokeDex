@@ -8,20 +8,16 @@ let height = [];
 let weight = [];
 const pokemonStats = [];
 let pokemonMoves = [];
-
 let startAmount = 1;
-
 
 async function init() {
      await loadPokemon();
 
 }
 
-
-
 async function loadPokemon() {
 
-     for (let i = startAmount; i < startAmount + 20; i++) {
+     for (let i = startAmount; i < startAmount + 40; i++) {
           let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
           let response = await fetch(url);
           let currentPokemon = await response.json();
@@ -32,15 +28,13 @@ async function loadPokemon() {
           }));
 
           const moves = currentPokemon.moves.map(move => ({
-               name: move.move.name 
-           }));
-               
-          
+               name: move.move.name
+          }));
+
+
           pokemonMoves.push(moves);
 
           pokemonStats.push(stats);
-
-          
 
           loadedPokemonName.push(currentPokemon['name'])
           loadedPokemonImg.push(currentPokemon['sprites']['other']['dream_world']['front_default'])
@@ -48,12 +42,6 @@ async function loadPokemon() {
           pokeId.push(currentPokemon['id'])
           height.push(currentPokemon['height'])
           weight.push(currentPokemon['weight'])
-          
-
-         
-          
-
-          
 
           const firstType = currentPokemon['types'][0]['type']['name'];
           // console.log("Erster Typ:", firstType); // Eigenschaften der Pokemons
@@ -65,20 +53,45 @@ async function loadPokemon() {
           } else {
                trait2.push(null);
           }
-          
+
      }
 
      FirstLetterUpperCase()
      renderPokemon();
 }
 
+
+
+function filterNames() {
+     let search = document.getElementById('search').value.toLowerCase();
+     let filteredPokemon = [];
+
+     for(let j = 0; j < loadedPokemonName.length; j++){
+          if(loadedPokemonName[j].toLowerCase().includes(search)){
+               filteredPokemon.push(j);
+          }
+     }
+
+     for(let i = 0; i < loadedPokemonName.length; i++){
+          let pokemonContainer = document.getElementById(`pokemon-container${i}`);
+          let flipCard = document.getElementById(`flip-card${i}`)
+          if (filteredPokemon.includes(i)) {
+               pokemonContainer.style.display = ''; // Zeige das Pokémon
+               flipCard.style.display = '';
+               
+          } else {
+               
+               flipCard.style.display = 'none'; // Verstecke das Pokémon
+          }
+     }
+     
+}
+
 async function loadMore() { // WICHTIG! Reihenfolge beachten. Erst startAmount und dann loadPokemon()
-     startAmount += 20;
+     startAmount += 40;
      await loadPokemon()
 
 }
-
-
 
 function FirstLetterUpperCase() { // Anfangsbuchstaben der Pokemon gross schreiben.
      for (var i = 0; i < loadedPokemonName.length; i++) {
@@ -87,11 +100,8 @@ function FirstLetterUpperCase() { // Anfangsbuchstaben der Pokemon gross schreib
 
 }
 
-
-
-
 async function renderPokemon() {
-     for (let i = startAmount - 1; i < startAmount + 19; i++) {
+     for (let i = startAmount - 1; i < startAmount + 39; i++) {
           let currentPokemonName = loadedPokemonName[i];
           let currentPokemonImg = loadedPokemonImg[i];
           let currentTrait1 = trait1[i];
@@ -100,11 +110,8 @@ async function renderPokemon() {
           let currentHeight = formatNumbers(height[i].toFixed());
           let currentWeight = formatNumbers(weight[i].toFixed());
 
-
-         
-
           document.getElementById('show-pokemon').innerHTML += /*html*/`
-<div class="flip-card">
+<div id="flip-card${i}" class="flip-card">
     <div class="flip-card-inner">
         <div  class="pokemon-container flip-card-front " id="pokemon-container${i}">
             <h3>${currentPokemonName}</h3>
@@ -182,6 +189,7 @@ function setFirstTraitColor(i, currentTrait1) {
 
      }
 }
+
 function setSecondTraitColor(i, currentTrait2) {
      const backgroundColors = {
           'flying': 'rgb(50, 228, 237)', 'poison': 'rgb(142, 49, 235)', 'ground': 'rgb(145, 76, 10)', 'fairy': 'rgb(232, 60, 203)', 'ice': 'rgb(71, 252, 255)'
@@ -210,8 +218,6 @@ function openCard(i) {
      const currentId = pokeId[i];
      const moves = pokemonMoves[i];
      const showMoves = moves.map(move => `<span class="move">${move.name}</span>`).join(' ');  // Damit kann man Leerzeichen zwischen den moves platzieren und jedes move bekommt ein span um ihn zu stylen.
-    
-
 
      const popupContent = document.getElementById('popup-pokemon');
      popupContent.innerHTML = /*html*/`
@@ -248,7 +254,6 @@ function openCard(i) {
 
 }
 
-
 function closeModal() {
      const modalContainer = document.getElementById('modal-container');
      const overlay = document.getElementById('overlay');
@@ -257,7 +262,6 @@ function closeModal() {
      overlay.style.display = 'none';
 
 }
-
 
 function setModalBackgroundColor(trait) {
      const modalContainer = document.getElementById('modal-container');

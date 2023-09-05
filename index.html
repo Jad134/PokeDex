@@ -20,9 +20,11 @@
 
 <body onload="init()">
     <header>
+        <div style="width: 100px;"></div>
         <div class="headline">
-            <h1>Pokedex</h1>
+            <h1>Pokedex</h1>    
         </div>
+        <input oninput="filterNames()" id="search" type="text" placeholder="Suche...">
     </header>
     <div id="show-pokemon"></div>
     <div class="btn-container">

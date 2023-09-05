@@ -19,6 +19,7 @@
     border-radius: 5px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
+
 .open-card-header{
     display: flex;
     justify-content: center;
@@ -28,10 +29,12 @@
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
 }
+
 .open-card-header h1{
     margin-block-start: 0;
     margin-block-end: 0;
 }
+
 .stats-and-img{
     display: flex;
     justify-content:flex-start;
@@ -44,25 +47,29 @@
     background-color: white;
     border-radius: 6px;
 }
+
 .move-container{
     background-color: white;
     width: 100%;
     height: 100%;
 }
+
 #moves{
     overflow-y: auto;
     height: 190px;
     overflow-x: hidden;
     padding-top: 8px;
 }
+
 .move{
-    border: 3px solid #000; /* Fügt einen Rahmen hinzu */
-  padding: 5px; /* Fügt Innenabstand hinzu */
-  margin: 5px; /* Fügt Außenabstand hinzu */
+    border: 3px solid #000; 
+  padding: 5px; 
+  margin: 5px; 
   display: inline-block; /* Damit werden die Moves nebeneinander angezeigt */
   border-radius: 6px;
   font-weight: bolder;
 }
+
 .section-moves{
     display: flex;
     justify-content: center;

@@ -2,6 +2,12 @@ body {
     margin: 0;
     background-color: #FF8888;
     font-family: 'Open Sans', sans-serif;
+    background-image: url("./img/Pokeball-background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-color: #e16666;
+    background-repeat:no-repeat;
+    background-attachment: fixed;
 }
 
 header {
@@ -9,9 +15,6 @@ header {
     justify-content: space-around;
     align-items: center;
 }
-
-
-
 .headline {
     border: 5px solid black;
     border-radius: 69px;

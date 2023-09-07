@@ -23,7 +23,7 @@
 .open-card-header{
     display: flex;
     justify-content: center;
-    background-color: rgb(193, 9, 9);
+    background-color: rgb(139, 20, 20);
     border-bottom: 8px solid black;
     height: 50px;
     border-top-left-radius: 6px;
@@ -33,6 +33,7 @@
 .open-card-header h1{
     margin-block-start: 0;
     margin-block-end: 0;
+    color: white;
 }
 
 .stats-and-img{

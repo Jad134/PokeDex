@@ -16,6 +16,9 @@ async function init() {
 }
 
 async function loadPokemon() {
+     document.getElementById('pokeball-loader').classList.add('d-flex');
+     const loadMoreBtn = document.getElementById('load-more-btn');
+     loadMoreBtn.disabled = true;
 
      for (let i = startAmount; i < startAmount + 40; i++) {
           let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
@@ -55,7 +58,8 @@ async function loadPokemon() {
           }
 
      }
-
+     loadMoreBtn.disabled = false;
+     document.getElementById('pokeball-loader').classList.remove('d-flex');
      FirstLetterUpperCase()
      renderPokemon();
 }

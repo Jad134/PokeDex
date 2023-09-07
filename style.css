@@ -49,7 +49,7 @@ input:hover{
     /* justify-content: center; */
     align-items: center;
     height: 300px;
-    width: 250px;
+    width: 270px;
     /* background-color: green;*/
     border-radius: 16px;
     transition: transform .8s;
@@ -119,6 +119,39 @@ h3 {
     object-fit: cover;
 }
 
+#pokeball-loader{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    position: fixed;
+    z-index: 1000;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px; 
+    height: 500px;
+    animation: rotate 2s linear infinite; /* Animation hinzufügen und das rotate wird dann von dem keyframes ausgeführt */
+    transform-origin: center; /* Um den Drehpunkt in die Mitte zu setzen */
+}
+
+
+@keyframes rotate {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg); /* Keine Rotation */
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg); /* Vollständige Rotation (1 Umdrehung) */
+    }
+}
+
+#pokeball-loader img{
+    width: 250px;
+}
+
+.d-flex{
+    display: flex !important;
+}
 
 
 

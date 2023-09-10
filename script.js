@@ -105,6 +105,13 @@ async function loadMore() { // WICHTIG! Reihenfolge beachten. Erst startAmount u
      
 }
 
+function scrollUP(){
+     window.scrollTo({
+          top: 0, 
+          behavior: 'smooth' 
+      });
+}
+
 function FirstLetterUpperCase() { // Anfangsbuchstaben der Pokemon gross schreiben.
      for (var i = 0; i < loadedPokemonName.length; i++) {
           loadedPokemonName[i] = loadedPokemonName[i].charAt(0).toUpperCase() + loadedPokemonName[i].substr(1);

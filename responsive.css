@@ -1,0 +1,62 @@
+@media (max-width: 780px){
+    #show-pokemon{
+        margin: 16px;
+        margin-bottom: 100px;
+    }
+}
+
+
+
+@media (max-width: 600px){
+    input{
+        width: 150px;
+    }
+}
+
+@media(max-width: 500px){
+    header{
+        flex-direction: column;
+    }
+    input{
+        margin-top: 16px;
+    }
+    #pokeball{
+        width: 56px;
+    }
+    .arrow{
+        width: 56px;
+    }
+}
+
+@media(max-width: 450px){
+.stats-and-img{
+    flex-direction: column;
+    gap: 8px;
+}
+.modal-container{
+    width: 320px;
+}
+#show-pokemon{
+    margin: 32px;
+    margin-left: 15px;
+    margin-bottom: 100px;
+    gap: 88px;
+}
+.arrow{
+    right: 4px;
+}
+.flip-card:hover .flip-card-inner {
+    transform: none;
+
+}
+.flip-card-inner {
+    
+    transition: none;
+    
+}
+.pokemon-container:hover {
+    cursor: pointer;
+    transform: none;
+
+}
+}

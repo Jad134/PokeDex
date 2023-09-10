@@ -8,6 +8,7 @@ body {
     background-color: #e16666;
     background-repeat:no-repeat;
     background-attachment: fixed;
+    scroll-behavior: smooth;
 }
 
 header {
@@ -15,6 +16,12 @@ header {
     justify-content: space-around;
     align-items: center;
 }
+
+.header-link{
+    text-decoration: none;
+    color: white;
+}
+
 .headline {
     border: 5px solid black;
     border-radius: 69px;
@@ -22,6 +29,7 @@ header {
     border-top: 0;
     background-color: red;
     color: white;
+    
 }
 
 input{
@@ -49,11 +57,9 @@ input:hover{
 .pokemon-container {
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
     align-items: center;
     height: 300px;
     width: 270px;
-    /* background-color: green;*/
     border-radius: 16px;
     transition: transform .8s;
     color: white;
@@ -115,6 +121,17 @@ h3 {
 .btn-container {
     display: flex;
     justify-content: center;
+}
+.arrow{
+    object-fit: contain;
+    position: absolute;
+    right: 24px;
+    transition: transform .8s;
+}
+
+.arrow:hover{
+    cursor: pointer;
+    transform: scale(1.1);
 }
 
 #pokeball {

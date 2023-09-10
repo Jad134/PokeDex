@@ -16,13 +16,14 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="openPokemon.css">
     <link rel="icon" type="image/x-icon" href="./img/pokeball.png">
+    <link rel="stylesheet" href="responsive.css">
 </head>
 
 <body onload="init()">
     <header>
         <div style="width: 100px;"></div>
         <div class="headline">
-            <h1>Pokedex</h1>
+            <a class="header-link" href=""><h1>Pokedex</h1></a>
         </div>
         <input oninput="filterNames()" id="search" type="text" placeholder="Suche...">
     </header>
@@ -30,8 +31,11 @@
     <div id="pokeball-loader"> <img src="./img/pokeball-loading.png" alt=""></div>
     <div class="btn-container">
         <button onclick="loadMore()" id="load-more-btn">Load More <img id="pokeball" src="./img/pokeball.png"
-                alt=""></button>
+                alt=""></button>    
+                <img onclick="scrollUP()" class="arrow" src="./img/arrow-top.png" alt="Scroll-Up">
     </div>
+        
+   
     <div id="modal-container" class="modal-container">
         <div class="modal-content">
             <!-- Hier wird der Inhalt des Popups angezeigt -->

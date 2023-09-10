@@ -1,6 +1,6 @@
 function showCards(i, currentPokemonName,  currentPokemonImg,  currentTrait1, currentTrait2, currentId, currentHeight, currentWeight){
     return /*html*/`
-    <div id="flip-card${i}" class="flip-card">
+    <div  onclick="openCard(${i}) " id="flip-card${i}" class="flip-card">
         <div class="flip-card-inner">
             <div  class="pokemon-container flip-card-front " id="pokemon-container${i}">
                 <h3>${currentPokemonName}</h3>
